@@ -15,9 +15,9 @@ public class MainGUI extends JFrame implements ActionListener{
     private JPanel MyJPanel;
     private TipCalculator calculator;
 
-    public MainGUI(TipCalculator calculator){
-        this.calculator=calculator;
+    public MainGUI(){
         createUIComponents();
+        setUpListeners();
     }
 
     public void setUpListeners(){
@@ -30,7 +30,7 @@ public class MainGUI extends JFrame implements ActionListener{
     public void createUIComponents(){
         setContentPane(MyJPanel);
         setTitle("My GUI");
-        setSize(600, 600);
+        setSize(700, 400);
         setLocation(450,100);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -39,7 +39,8 @@ public class MainGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         Object source=e.getSource();
         JButton clickedButton=(JButton) source;
-        String buttonText= clickedButton.getName();
+        String buttonText=clickedButton.getName();
         System.out.println(buttonText);
+
     }
 }
