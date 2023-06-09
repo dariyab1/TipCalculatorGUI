@@ -13,6 +13,19 @@ public class TipCalculator
         this.numberOfPeople = numberOfPeople;
     }
 
+    public void increaseTip(){
+        tipPercentage++;
+    }
+    public void increaseNumPeople(){
+        numberOfPeople++;
+    }
+    public void decreaseTip(){
+        tipPercentage--;
+    }
+    public void decreaseNumPeople(){
+        numberOfPeople--;
+    }
+
     //getters and setters for all three attributes
     public double getBill() {return bill;}
     public int getTip() {return tipPercentage;}
@@ -44,4 +57,5 @@ public class TipCalculator
     {
         return bill/numberOfPeople + tipPerPerson();
     }
+
 }

@@ -13,11 +13,18 @@ public class MainGUI extends JFrame implements ActionListener{
     private JTextField tipTotal;
     private JTextField Total;
     private JPanel MyJPanel;
+    private JButton setButton;
     private TipCalculator calculator;
 
     public MainGUI(){
         createUIComponents();
         setUpListeners();
+        calculator=new TipCalculator(0,15,1);
+        tipPercent.setText("15%");
+        NumPeople.setText("1");
+        Bill.setText("0.00");
+        tipTotal.setText("$0.00");
+        Total.setText("$0.00");
     }
 
     public void setUpListeners(){
@@ -25,6 +32,7 @@ public class MainGUI extends JFrame implements ActionListener{
         addTip.addActionListener(this);
         decreaseNumPeople.addActionListener(this);
         addNumPeople.addActionListener(this);
+        setButton.addActionListener(this);
     }
 
     public void createUIComponents(){
@@ -39,8 +47,29 @@ public class MainGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         Object source=e.getSource();
         JButton clickedButton=(JButton) source;
-        String buttonText=clickedButton.getName();
-        System.out.println(buttonText);
-
+        if(clickedButton.equals(addTip)){
+            calculator.increaseTip();
+            tipPercent.setText(calculator.getTip()+"%");
+        }
+        if(clickedButton.equals(decreaseTip)){
+            calculator.decreaseTip();
+            tipPercent.setText(calculator.getTip()+"%");
+        }
+        if(clickedButton.equals(addNumPeople)){
+            calculator.increaseNumPeople();
+            NumPeople.setText(""+calculator.getNumberOfPeople());
+        }
+        if(clickedButton.equals(decreaseNumPeople)){
+            calculator.decreaseNumPeople();
+            NumPeople.setText(""+calculator.getNumberOfPeople());
+        }
+        if(clickedButton.equals(setButton)){
+            calculator.setBill(Double.parseDouble(Bill.getText()));
+            Total.setText("$"+calculator.totalPerPerson());
+            tipTotal.setText("$"+calculator.tipPerPerson());
+        }
     }
+
+
+
 }
